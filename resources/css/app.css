@@ -27,9 +27,8 @@
 /*pop-up*/
 .sd-card-pop {
     position: relative;
-    background-color: #282828;
     padding: 30px;
-    max-width: 450px;
+    max-width: 650px;
     width: 100%;
 }
 .pop-up-wrapper.open {

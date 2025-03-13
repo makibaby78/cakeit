@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/', [ProductController::class, 'index'])->name('index');
 
+        Route::post('/', [ProductController::class, 'store'])->name('store');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
