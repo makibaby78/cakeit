@@ -1,3 +1,61 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*helper*/
+* {
+    scroll-behavior: smooth;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.5;
+    box-sizing: border-box;
+}
+
+.btn-theme {
+    background-color: #347c9d;
+}
+
+.btn-styles {
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 600;
+    transition-duration: 0.2s;
+    min-width: 100px;
+}
+/*end of pop-up*/
+
+/*pop-up*/
+.sd-card-pop {
+    position: relative;
+    background-color: #282828;
+    padding: 30px;
+    max-width: 450px;
+    width: 100%;
+}
+.pop-up-wrapper.open {
+    opacity: 1;
+    z-index: 100;
+}
+.pop-up-wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000000a1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    z-index: -1;
+}
+.close-pop {
+    width: fit-content;
+    position: absolute;
+    top: 3px;
+    right: 8px;
+    font-size: 20px;
+    cursor: pointer;
+}
+/*end of pop-up*/

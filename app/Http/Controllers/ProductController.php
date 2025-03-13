@@ -8,7 +8,15 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    
+    public function index()
+    {
+        $products = Product::all();
+
+        if(!$products) abort(404);
+
+        return view('product.index', compact('products'));
+    }
+
     public function store(Request $request)
     {
 

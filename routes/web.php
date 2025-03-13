@@ -29,13 +29,7 @@ Route::middleware('auth')->group(function () {
     ->name('product.')
     ->group(function () {
 
-        Route::view('/', 'product.index')
-        ->name('index');
-
-        Route::view('/create', 'product.create')
-        ->name('create');
-
-        Route::post('/create', [ProductController::class, 'store'])->name('store');
+        Route::get('/', [ProductController::class, 'index'])->name('index');
 
     });
 
