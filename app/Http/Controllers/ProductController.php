@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -16,6 +17,33 @@ class ProductController extends Controller
 
         return view('product.index', compact('products'));
     }
+
+    public function destroy(Request $request)
+    {
+        $ids = json_decode($request->input('ids'), true);
+    
+        if (is_array($ids) && count($ids)) {
+            // Get the products
+            $products = Product::whereIn('id', $ids)->get();
+    
+            foreach ($products as $product) {
+                // Image path saved as 'products/filename.jpg'
+                $imagePath = 'public/' . $product->image;
+    
+                if ($product->image && Storage::exists($imagePath)) {
+                    Storage::delete($imagePath);
+                }
+            }
+    
+            // Delete products from DB
+            Product::whereIn('id', $ids)->delete();
+    
+            return redirect()->route('product.index')->with('success', 'Products and images deleted.');
+        }
+    
+        return redirect()->route('product.index')->with('error', 'No products selected.');
+    }
+    
 
     public function store(Request $request)
     {

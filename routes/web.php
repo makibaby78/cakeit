@@ -30,8 +30,9 @@ Route::middleware('auth')->group(function () {
     ->group(function () {
 
         Route::get('/', [ProductController::class, 'index'])->name('index');
-
         Route::post('/', [ProductController::class, 'store'])->name('store');
+        Route::delete('/', [ProductController::class, 'destroy'])->name('destroy');
+
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

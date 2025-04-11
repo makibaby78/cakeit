@@ -9,21 +9,24 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="col-span-6 card flex flex-col bg-white border border-gray-300">
-                    <div class="border-b p-6">
-                        <button class="btn-theme btn-styles pop-up-create">
+                    <div class="border-b p-6 flex gap-x-4 items-center">
+                        <button class="btn-theme btn-styles rounded-lg pop-up-create">
                             <i class="fa-solid fa-plus mr-2"></i> Compose
                         </button>
-                        {{-- @if($selectedBlogs)
-                            <x-button-dark class="popup-trigger delete-btn">
+
+                        <form method="POST" action="{{ route('product.destroy') }}">
+                            @csrf
+                            @method('DELETE')
+                            
+                            <input type="hidden" name="ids" id="checked-ids">
+                            
+                            <x-button-dark class="delete-btn" type="submit">
                                 <i class="fa fa-trash mr-2"></i>
                                 Delete
                             </x-button-dark>
-                        @else
-                            <x-button-dark class="popup-trigger delete-btn" disabled>
-                                <i class="fa fa-trash mr-2"></i>
-                                Delete
-                            </x-button-dark>
-                        @endif --}}
+
+                        </form>
+
                     </div>
                     <div class="border-b p-6">
                         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
@@ -64,7 +67,7 @@
                             @forelse ($products as $product)
                                 <tr class="bg-white border-b">
                                     <td scope="row" class="px-6 py-4">
-                                        <input type="checkbox" value="" class="w-4 h-4 rounded checkbox">
+                                        <input type="checkbox" value="{{ $product->id }}" class="w-4 h-4 rounded checkbox">
                                     </td>
                                     <td scope="row" class="px-6 py-4">
                                         <a href="">Edit</a>
